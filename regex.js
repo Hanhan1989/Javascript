@@ -14,7 +14,8 @@ var nuevoTexto = texto.replace(pattern, '$1-$2-$3');
 
 console.log('holamundo! \n', nuevoTexto);
 
-// El resultado es un objeto pattern de regex
+// Usar el constructor RegExp()
+// La instancia del constructor es un objeto pattern de regex
 // recordar escapar "\"
 var pattern = new RegExp("(\\w{4})(\\w{5})(\\w*)", "gi");
 console.log(pattern); // output /(\w{4})(\w{5})(\w*)/gi
@@ -23,11 +24,11 @@ var texto = "holamundo!";
 var nuevoTexto = texto.replace(pattern, '$1-$2-$3');
 console.log(nuevoTexto);
 
-
-// Hacer match de todo el que cumple el pattern
-// Fíjate que sólo hay un objeto (pattern) y el flag globa. 
+//Uso del regex.prototype.exec
+// Hace match de todo el que cumple el pattern
+// Para recorrer todos los resultados macheados usamos el while. Fíjate que sólo hay un objeto (pattern) y el flag global. 
 // EL objeto va buscando uno a uno hasta no encontrar más y sale del bucle while. 
-// Si ponemos el pattern directamente en el while tendremos un loop infinito 
+// Si ponemos el pattern directamente en el while tendremos un loop infinito porque en cada bucle, se crea un objeto nuevo pattern 
 //while (letra = /([a-z])/gi.exec(letras))  y en chrome es shit + esc y cerrar la pestaña https://stackoverflow.com/questions/905322/how-do-you-stop-an-infinite-loop-in-javascript
 var letras = "a,b,c,d,e,f,g,i";
 var letra;
@@ -36,6 +37,7 @@ while (letra = pattern.exec(letras)) {
   console.log(letra[0]);
 }
 
+// Uso del regex.prototype.test
 // Testear si una cadena de texto cumple o no el pattern
 // Si ponemos el flag g, cada vez que ejecutemos , el puntero se mueve y se testeará desde esa posición para la próxima vez. 
 // https://stackoverflow.com/questions/47229364/validate-multiple-dates-in-regular-expression-with-the-same-pattern
